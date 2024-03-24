@@ -2,10 +2,7 @@
 #include <fstream>
 #include <ctime>
 
-#define WRITE 0
-#define DELETE 1
-
-const std::string LOGFILE = "LOGFILE";
+#include "write_atomic_log.h"
 
 bool log(int operation){
   std::ofstream log_fstream (LOGFILE, std::ios_base::out | std::ios_base::app);
@@ -19,7 +16,7 @@ bool log(int operation){
   return true;
 }
 
-bool clearlog(){
+bool clear(){
   std::remove(LOGFILE.c_str());
   if(!std::ifstream(LOGFILE)){
     return false;
